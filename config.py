@@ -18,16 +18,11 @@ def load_dot_env_file(env='dev'):
 @dataclass(frozen=True)
 class Config:
     TMDB_API_KEY: str
-    TMDB_API_SECRET: str
 
 
 def load_env_vars_to_config(env='dev') -> Config:
     tmdb_api_key = os.getenv("TMDB_API_KEY")
-    tmdb_api_secret = os.getenv("TMDB_API_SECRET")
-
     if not tmdb_api_key:
         raise Exception("TMDB_API_KEY is mandatory for this program")
-    if not tmdb_api_secret:
-        raise Exception("TMDB_API_SECRET is mandatory for this program")
-    config = Config(TMDB_API_KEY=tmdb_api_key, TMDB_API_SECRET=tmdb_api_secret)
+    config = Config(TMDB_API_KEY=tmdb_api_key)
     return config
